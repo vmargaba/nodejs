@@ -18,3 +18,7 @@ jobs:
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+env:
+        # ... previous environment values
+        PR_REVIEWER.REQUIRE_TESTS_REVIEW: "false" # Disable tests review
+        PR_CODE_SUGGESTIONS.NUM_CODE_SUGGESTIONS: 1 # Increase number of code suggestions
