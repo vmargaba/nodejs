@@ -44,3 +44,5 @@ console.log(`Error occurs, Error code -> ${err.code},
 Error No -> ${err.errno}`); 
 }); 
 
+// Extra function call without definition 
+undefinedFunctionCall();
