@@ -2,9 +2,11 @@ name: PR-Agent
 
 on:
 # pull_request:
+pull_request:
+    branches: ["*"]
+issue_comment:
+    types: [created]
 # issue_comment:
-  workflow_dispatch:
-
 permissions:
   issues: write
   pull-requests: write
