@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: ["*"]
   issue_comment:
-    types: [created]
+    types: [opened, reopened, ready_for_review, created]
 
 jobs:
   pr_agent_job:
