@@ -14,15 +14,37 @@ jobs:
       contents: write
     name: Run pr agent on every pull request, respond to user comments
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Updated to v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Updated to v3
+        with:
+          node-version: '20'
+
+      - name: Debug environment variables
+        run: |
+          echo "OPENAI_KEY=${{ secrets.OPENAI }}"
+          echo "GITHUB_TOKEN=${{ secrets.API_TOKEN }}"
+          echo "PR_DESCRIPTION_USE_DESCRIPTION_MARKERS=${{ env.PR_DESCRIPTION_USE_DESCRIPTION_MARKERS }}"
+          echo "PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER=${{ env.PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER }}"
+          echo "GITHUB_ACTION_AUTO_REVIEW=${{ env.GITHUB_ACTION_AUTO_REVIEW }}"
+          echo "GITHUB_ACTION_AUTO_DESCRIBE=${{ env.GITHUB_ACTION_AUTO_DESCRIBE }}"
+          echo "GITHUB_ACTION_AUTO_IMPROVE=${{ env.GITHUB_ACTION_AUTO_IMPROVE }}"
+          echo "PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES=${{ env.PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES }}"
+
       - name: PR Agent action step
         id: pragent
         uses: Codium-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.OPENAI }}
           GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
-          pr_description.use_description_markers: "true"
-          pr_description.include_generated_by_header: "true"
-          github_action.auto_review: "true"
-          github_action.auto_describe: "true"
-          github_action.auto_improve: "true"
-          pr_update_changelog.push_changelog_changes: "true"
+          PR_DESCRIPTION_USE_DESCRIPTION_MARKERS: "true"
+          PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER: "true"
+          GITHUB_ACTION_AUTO_REVIEW: "true"
+          GITHUB_ACTION_AUTO_DESCRIBE: "true"
+          GITHUB_ACTION_AUTO_IMPROVE: "true"
+          PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES: "true"
+
+      - name: Check action output
+        run: echo "${{ steps.pragent.outputs }}"
