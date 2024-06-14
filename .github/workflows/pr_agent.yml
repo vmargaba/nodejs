@@ -25,7 +25,7 @@ jobs:
       - name: Debug environment variables
         run: |
           echo "OPENAI_KEY=${{ secrets.OPENAI }}"
-          echo "GITHUB_TOKEN=${{ secrets.API_TOKEN }}"
+          echo "GITHUB_TOKEN=${{ secrets.CR_GH_TOKEN }}"
           echo "PR_DESCRIPTION_USE_DESCRIPTION_MARKERS=${{ env.PR_DESCRIPTION_USE_DESCRIPTION_MARKERS }}"
           echo "PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER=${{ env.PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER }}"
           echo "GITHUB_ACTION_AUTO_REVIEW=${{ env.GITHUB_ACTION_AUTO_REVIEW }}"
