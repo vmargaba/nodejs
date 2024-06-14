@@ -14,25 +14,6 @@ jobs:
       contents: write
     name: Run pr agent on every pull request, respond to user comments
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
-      - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated to v3
-        with:
-          node-version: '20'
-      - name: Install dependencies
-        run: npm install
-      - name: Debug environment variables
-        run: |
-          echo "OPENAI_KEY=${{ secrets.OPENAI }}"
-          echo "GITHUB_TOKEN=${{ secrets.CR_GH_TOKEN }}"
-          echo "PR_DESCRIPTION_USE_DESCRIPTION_MARKERS=${{ env.PR_DESCRIPTION_USE_DESCRIPTION_MARKERS }}"
-          echo "PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER=${{ env.PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER }}"
-          echo "GITHUB_ACTION_AUTO_REVIEW=${{ env.GITHUB_ACTION_AUTO_REVIEW }}"
-          echo "GITHUB_ACTION_AUTO_DESCRIBE=${{ env.GITHUB_ACTION_AUTO_DESCRIBE }}"
-          echo "GITHUB_ACTION_AUTO_IMPROVE=${{ env.GITHUB_ACTION_AUTO_IMPROVE }}"
-          echo "PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES=${{ env.PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES }}"
-
       - name: PR Agent action step
         id: pragent
         uses: Codium-ai/pr-agent@main
