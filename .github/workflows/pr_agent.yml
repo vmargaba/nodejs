@@ -38,7 +38,7 @@ jobs:
         uses: Codium-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.OPENAI }}
-          GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CR_GH_TOKEN }}
           PR_DESCRIPTION_USE_DESCRIPTION_MARKERS: "true"
           PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER: "true"
           GITHUB_ACTION_AUTO_REVIEW: "true"
