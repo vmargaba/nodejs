@@ -25,6 +25,7 @@ jobs:
           GITHUB_ACTION_AUTO_REVIEW: "true"
           GITHUB_ACTION_AUTO_DESCRIBE: "true"
           GITHUB_ACTION_AUTO_IMPROVE: "true"
+          GITHUB_ACTION_AUTO_TEST: "true"
           PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES: "true"
 
       - name: Check action output
