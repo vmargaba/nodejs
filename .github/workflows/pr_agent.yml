@@ -4,11 +4,9 @@ on:
     branches: ["*"]
   issue_comment:
     types: [opened, reopened, ready_for_review, created]
-
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
-    model: claude-3-5-sonnet
     permissions:
       issues: write
       pull-requests: write
@@ -19,8 +17,10 @@ jobs:
         id: pragent
         uses: Codium-ai/pr-agent@main
         env:
+          CLAUDE_KEY: ${{ secrets.CLAUDE_KEY }}
           OPENAI_KEY: ${{ secrets.OPENAI }}
           GITHUB_TOKEN: ${{ secrets.CR_GH_TOKEN }}
+          CONFIG.MODEL: "claude-3-5-sonnet"
           PR_DESCRIPTION_USE_DESCRIPTION_MARKERS: "true"
           PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER: "true"
           github_action_config.auto_review: "true" # enable\disable auto review
