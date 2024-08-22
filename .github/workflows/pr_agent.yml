@@ -8,7 +8,7 @@ on:
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
-    model: "claude-3-5-sonnet"
+    model: claude-3-5-sonnet
     permissions:
       issues: write
       pull-requests: write
