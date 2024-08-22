@@ -4,7 +4,6 @@ on:
     branches: ["*"]
   issue_comment:
     types: [opened, reopened, ready_for_review, created]
-
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
@@ -18,15 +17,15 @@ jobs:
         id: pragent
         uses: Codium-ai/pr-agent@main
         env:
+          CLAUDE_KEY: ${{ secrets.CLAUDE_KEY }}
           OPENAI_KEY: ${{ secrets.OPENAI }}
           GITHUB_TOKEN: ${{ secrets.CR_GH_TOKEN }}
+          CONFIG.MODEL: "claude-3-5-sonnet"
           PR_DESCRIPTION_USE_DESCRIPTION_MARKERS: "true"
           PR_DESCRIPTION_INCLUDE_GENERATED_BY_HEADER: "true"
-          GITHUB_ACTION_AUTO_REVIEW: "true"
-          GITHUB_ACTION_AUTO_DESCRIBE: "true"
-          GITHUB_ACTION_AUTO_IMPROVE: "true"
-          GITHUB_ACTION_AUTO_TEST: "true"
-          PR_UPDATE_CHANGELOG_PUSH_CHANGELOG_CHANGES: "true"
-
+          github_action_config.auto_review: "true" # enable\disable auto review
+          github_action_config.auto_describe: "true" # enable\disable auto describe
+          github_action_config.auto_improve: "true" # enable\disable auto improve
+          github_action_config.auto_test: "true"
       - name: Check action output
         run: echo "${{ steps.pragent.outputs }}"
