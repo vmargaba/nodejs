@@ -1,7 +1,5 @@
-[config]
-model: "claude-3-5-sonnet"
-
 name: PRAgent
+model: "claude-3-5-sonnet"
 on:
   pull_request:
     branches: ["*"]
