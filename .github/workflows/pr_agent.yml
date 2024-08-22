@@ -1,5 +1,4 @@
 name: PRAgent
-model: "claude-3-5-sonnet"
 on:
   pull_request:
     branches: ["*"]
@@ -9,6 +8,7 @@ on:
 jobs:
   pr_agent_job:
     runs-on: ubuntu-latest
+    model: "claude-3-5-sonnet"
     permissions:
       issues: write
       pull-requests: write
